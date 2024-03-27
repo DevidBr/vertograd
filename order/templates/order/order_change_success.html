@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container" style="top: 120px; position: relative">
+    <h5>{{ report }}</h5>
+    <h5>Вернуться в <a href="{% url 'order:my_orders' %}">панель управления заявками.</a></h5>
+
+</div>
+
+
+{% endblock %}

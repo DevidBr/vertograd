@@ -1,0 +1,99 @@
+{% extends 'blog/base.html' %}
+{% block title %} Заявки от клиентов {% endblock %}
+{% block content %}
+
+<div class="container" style="top: 120px; position: relative">
+    <h3>{{ user.first_name|capfirst }}, добро пожаловать в панель управления заявок.</h3>
+    <h3>Необработанных заявок: <span style="font-weight: bold; background-color: {% if unprocessed_orders > 0 %}red{% else %}green{% endif %}; border-radius: 50px; padding: 3px 10px;">{{ unprocessed_orders }}</span></h3>
+
+    <div class="container search_items d-flex rounded p-3" style="padding: 0; justify-content: space-evenly; border: 1px solid #cad7bc; background-color: rgba(248, 249, 247, 0.7);">
+    <div class="search_item rounded " style="border: 1px solid #cad7bc; width: 30%; padding: 5px; background-color: rgba(248, 249, 247, 0.7)">
+        <h4>Поиск по номеру заявки</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ search_order_by_pk_form.search_pk }}
+            <button class="btn btn-success mt-2" type="submit">Искать</button>
+        </form>
+    </div>
+
+    <div class="search_item rounded" style="border: 1px solid #cad7bc; width: 30%; padding: 5px; background-color: rgba(248, 249, 247, 0.7)">
+        <h4>Фильтр по статусу</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ order_status_filter_form.filter_status_arg }}
+            <button class="btn btn-success mt-2" type="submit">Показать</button>
+        </form>
+    </div>
+
+    <div class="search_item rounded " style="border: 1px solid #cad7bc; width: 30%; padding: 5px; background-color: rgba(248, 249, 247, 0.7)">
+        <h4>Фильтр по актуальности</h4>
+        <form action="" method="post">
+        {% csrf_token %}
+        {{ order_relevant_filter_form.filter_relevant_arg }}
+        <button class="btn btn-success mt-2" type="submit">Показать</button>
+        </form>
+    </div>
+    </div>
+    <div class="container mt-3 p-0 d-flex" style="width: 100%; justify-content: center">
+        <a href="{% url 'order:my_orders' %}" class="btn btn-success btn-lg" style="color: white !important; width: 80%;">Показать все заявки</a>
+    </div>
+</div>
+
+<div class="container mt-3" style="top: 120px; position: relative">
+    <h3 style="text-align: center;">Все заявки. Всего записей: <span style="font-weight: bold">{{ orders.count }}</span></h3>
+    <div class="table-responsive">
+    <table class="table" style="border: 1px solid #cad7bc; overflow: scroll;">
+      <thead>
+        <tr>
+          <th scope="col">№</th>
+          <th scope="col">Дата</th>
+          <th scope="col">Тип заявки</th>
+          <th scope="col">Продукт</th>
+          <th scope="col">Имя</th>
+          <th scope="col">Телефон</th>
+          <th scope="col">Cтатус</th>
+          <th scope="col">Актуально</th>
+          <th scope="col">Подробно</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      {% with page_obj as orders %}
+
+      {% for order in orders %}
+        <tr class="{% if order.status %}table-success{% else %}table-danger{% endif %}">
+          <th scope="row">{{ order.pk }}</th>
+          <td>{{ order.date|date:"d.m.y" }}</td>
+          <td>{{ order.type_of_application }}</td>
+          <td>{{ order.exactly_name_application }}</td>
+          <td>{{ order.name }}</td>
+          <td>{{ order.phone }}</td>
+        {% if order.status %}
+          <td>Обработано</td>
+        {% else %}
+          <td><a href="{{ order.get_absolute_url }}" style="font-weight: 600; color: red !important">Свежая</a></td>
+        {% endif %}
+        {% if order.relevant %}
+          <td>Актуально</td>
+            {% else %}
+          <td>Неактуально</td>
+        {% endif %}
+          <td><a class="btn btn-light" href="{{ order.get_absolute_url }}">Открыть</a></td>
+        </tr>
+
+    {% endfor %}
+    {% endwith %}
+      </tbody>
+    </table>
+        </div>
+</div>
+
+<div class="container" style="top: 120px; position: relative">
+    <a class="btn btn-success btn-lg" style="color: white !important;" href="{% url 'order:order_create_page' %}">+ Добавить свою запись</a>
+</div>
+
+<div class="order_paginator container" style="top: 145px; position: relative">
+    {% include 'order/incl/order_paginator.html' %}
+</div>
+
+{% endblock %}

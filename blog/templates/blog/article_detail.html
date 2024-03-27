@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+{% block description_meta %}{{ article.preview }}{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">{{ article.title }}</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+    <div class="article_detail_container container" >
+        <div class="article_detail_preview" style="font-size: 1.2em">
+            {{ article.preview }}
+        </div>
+        <div class="blog_categories_list_item mt-3" style="">
+            <a href="{{ article.category.get_absolute_url }}">{{ article.category }}</a>
+        </div>
+        <div class="article_detail_body mt-3" style="font-size: 1.1em">
+            {{ article.body|safe }}
+        </div>
+
+        {% include 'blog/incl/b_modal.html' %}
+
+        <div class="article_detail_button">
+            <button type="button" class="contact-us large_btn" data-bs-toggle="modal" data-bs-target="#get_consultation">
+            Задать вопрос
+            </button>
+        </div>
+
+        {% if similar_articles.count > 0 %}
+
+        <div class="article_detail_similar_articles">
+
+        <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">Читать еще</div>
+        <div class="service_category_detail_line"></div>
+        </div>
+
+
+
+            <div class="blog_article_list">
+                {% for art in similar_articles %}
+                <div class="blog_article_item">
+                    <div class="blog_article_item-img">
+                        <img src="{{ art.image.url }}" alt="">
+                    </div>
+                    <div class="blog_article_item_text">
+                        <div class="blog_article_item_text-title">
+                            <h3>{{ art.title }}</h3>
+                        </div>
+                        <div class="blog_article_item_text-line"></div>
+
+                        <div class="blog_article_item_text-description">
+                            {{ art.preview|safe|truncatechars:200 }}
+                        </div>
+                        <div class="blog_article_item_text-detail">
+                            <a href="{{ art.get_absolute_url }}">Читать статью</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% endif %}
+    </div>
+
+        <a href="{% url 'blog:articles_list' %}" class="service_category_detail_header" style="top: {% if similar_articles.count > 0 %}59px{% else %}191px{% endif %}">
+        <div class="service_category_detail_title" style="font-size: 20px;">&#9668; К списку статей</div>
+        </a>
+
+
+
+    </div>
+
+
+{% endblock %}

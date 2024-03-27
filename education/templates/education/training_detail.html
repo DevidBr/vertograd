@@ -1,0 +1,108 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block description_meta %}{{ training.meta_description }}{% endblock %}
+{% block title %}{{ training.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">{{ training.name }}</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+    <div class="container training_detail_description" style="position: relative; top: 150px; font-size: 1.1em">
+        {{ training.description|safe }}
+    </div>
+
+    <div class="container d-flex training_detail_specifications">
+        <div class="training_detail_specifications-item">
+            <img src="{% static 'education/images/strt_time.svg' %}" alt="">
+            <p>Начало занятий</p>
+            <p>{{ training.start_date }}</p>
+        </div>
+        <div class="training_detail_specifications-item">
+            <img src="{% static 'education/images/duration.svg' %}" alt="">
+            <p>Длительность</p>
+            <p>{{ training.duration }}</p>
+        </div>
+        <div class="training_detail_specifications-item">
+            <img src="{% static 'education/images/form_for_education.svg' %}" alt="">
+            <p>Форма обучения</p>
+            <p>{{ training.form_of_education }}</p>
+        </div>
+        <div class="training_detail_specifications-item">
+            <img src="{% static 'education/images/document.svg' %}" alt="">
+            <p>Документ об окончании</p>
+            <p>{{ training.document }}</p>
+        </div>
+    </div>
+
+    <div class="service_page_button_section" style="top: 178px;
+    position: relative; margin: 24px auto; width: 50%;
+    border-radius: 55px;">
+        <a href="#" class="large_btn_link" data-bs-toggle="modal" data-bs-target="#order_training" style="font-size: 1.1em;">
+            <button class="large_btn">
+                <p style="margin-bottom: 0">
+                Стоимость курса
+                </p>
+                <p style="margin-bottom: 0">
+                {{ training.price|floatformat:"g" }}р.
+                </p>
+            </button>
+        </a>
+    </div>
+
+
+
+    <div class="service_category_detail_columns container" style="top:208px; color: #5B6B3A;">
+        <div class="service_category_detail_columns_left">
+            <div class="service_category_detail_columns_left_title">
+                <h3>{{ training.column_1_title }}</h3>
+            </div>
+            <div class="service_category_detail_columns_left_text">
+                {{ training.description_column_1|safe }}
+            </div>
+        </div>
+
+        <div class="service_category_detail_columns_right">
+            <div class="service_category_detail_columns_right_title">
+                <h3>{{ training.column_2_title }}</h3>
+            </div>
+            <div class="service_category_detail_columns_right_text">
+                {{ training.description_column_2|safe }}
+            </div>
+        </div>
+    </div>
+
+    <div class="service_category_detail_header" style="top:240px; text-align: center;">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">{{ training.separator_text }}</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+        <div class="service_category_detail_columns container" style="top:273px; color: #5B6B3A; flex-wrap: wrap; gap: 10px; margin-bottom: 26px!important;">
+            {% for block in training.block_set.all %}
+        <div class="service_category_detail_columns_left">
+            <div class="service_category_detail_columns_left_title">
+                <h5>{{ block.title }}</h5>
+            </div>
+            <div class="service_category_detail_columns_left_text; font-size: 15px">
+                {{ block.block|safe }}
+            </div>
+        </div>
+            {% endfor %}
+    </div>
+
+    {% include 'education/incl/education_modal.html' %}
+
+    <div class="training_detail_button_section">
+        <a href="#" class="large_btn_link" data-bs-toggle="modal" data-bs-target="#order_training">
+            <button class="large_btn"><p style="margin-bottom: 0">Записаться</p> <p style="margin-bottom: 0">на курс</p></button>
+        </a>
+    </div>
+
+
+
+{% endblock %}

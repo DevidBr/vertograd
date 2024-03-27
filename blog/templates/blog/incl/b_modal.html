@@ -1,0 +1,37 @@
+<div class="modal fade" id="get_consultation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+  <div class="modal-header d-flex justify-content-center gap-3">
+    <h3 class="modal-title consultation">Получите бесплатную консультацию</h3>
+    <button type="button" class="close close-contact-us" data-bs-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+        <div class="alert alert-success d-none" role="alert"></div>
+        <div class="alert alert-danger d-none" role="alert"></div>
+
+
+    <form action="{% url 'blog:get_consultation' %}" method="post" id="form_get_consultation">
+        <div class="modal-body">
+            {% csrf_token %}
+            {{ get_consultation_form }}
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="large_btn">Отправить</button>
+
+        </div>
+        <div class="text-muted agreement" style="font-size: 0.7em; text-align: center; margin: 5px;">
+        Нажимая кнопку "Отправить", я подтверждаю свою дееспособность,
+        согласие на обработку персональных данных в соответствии с указным
+        <a style="text-decoration: underline !important"  href="{% url 'blog:policy' %}">здесь</a> текстом.</div>
+    </form>
+
+    <button style="height: 60px; margin: 25px auto 40px auto; width: 50%" type="button" class="large_btn close_consultation d-none" data-bs-dismiss="modal" aria-label="Close">
+    Закрыть
+    </button>
+
+
+    </div>
+  </div>
+</div>

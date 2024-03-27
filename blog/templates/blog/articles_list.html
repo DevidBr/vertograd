@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+
+{% load blog_tags %}
+{% block description_meta %}Статьи о выращивании и уходе за растениями, как живут растения и животные, направление urban jungle, какие цветы подходят для украшения детской комнаты, а какие растения ядовитые.{% endblock %}
+{% block title %}Интересные новости, информация о растениях, последние тренды озеленения от студии фитодизайна Вертоград.{% endblock %}
+
+{% block content %}
+
+<div class="blog_header">
+        <div class="service_category_detail_header" style="top: 0; width: 100%">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">
+            {% if category %}
+            <h3>Статьи на тему: {{ category }}</h3>
+            {% else %}
+            <h3>Статьи</h3>
+            {% endif %}
+        </div>
+        <div class="service_category_detail_line"></div>
+        </div>
+
+
+    {% get_categories as categories %}
+    <div class="blog_header_categories_list">
+        {% if not category %}
+        <div class="blog_categories_list_item-active"><a href="">Все статьи</a></div>
+        {% else %}
+        <div class="blog_categories_list_item"><a href="{% url 'blog:articles_list' %}">Все статьи</a></div>
+        {% endif %}
+        {% for cat in categories %}
+        {% if category == cat %}
+        <div class="blog_categories_list_item-active"><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></div>
+        {% else %}
+        <div class="blog_categories_list_item"><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+
+
+<div class="blog_article_list">
+    {% for article in articles %}
+    <div class="blog_article_item">
+        <div class="blog_article_item-img">
+            <img src="{{ article.image.url }}" alt="">
+        </div>
+        <div class="blog_article_item_text">
+            <div class="blog_article_item_text-title">
+                <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
+            </div>
+            <div class="blog_article_item_text-line"></div>
+
+            <div class="blog_article_item_text-description">
+                {{ article.preview|safe|truncatechars:200 }}
+            </div>
+            <div class="blog_article_item_text-detail">
+                <a href="{{ article.get_absolute_url }}">Читать статью</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% include 'blog/incl/paginator.html' %}
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends  'blog/base.html' %}
+
+{% block content %}
+
+
+
+<div class="container d-flex" style="top: 120px; position: relative">
+    <h2>Подтверждение удаления заявки №{{ order.pk }}</h2>
+</div>
+
+<div class="container d-flex" style="top: 120px; position: relative">
+    <ul class="list-group" style="flex: 1">
+        <li class="list-group-item">Имя</li>
+        <li class="list-group-item">Номер заявки</li>
+        <li class="list-group-item">Заявка поступила</li>
+        <li class="list-group-item">Вид заявки</li>
+        <li class="list-group-item">Продукт</li>
+        <li class="list-group-item">Телефон:</li>
+        <li class="list-group-item">email:</li>
+        <li class="list-group-item">Комментарий заказчика:</li>
+    </ul>
+    <ul class="list-group" style="flex: 3">
+        <li class="list-group-item">{{ order.name }}</li>
+        <li class="list-group-item">{{ order.pk }}</li>
+        <li class="list-group-item">{{ order.date }}</li>
+        <li class="list-group-item">{{ order.type_of_application }}</li>
+        <li class="list-group-item">{{ order.exactly_name_application }}</li>
+        {% if order.phone %}
+        <li class="list-group-item">{{ order.phone }}</li>
+        {% else %}
+        <li class="list-group-item">отсутствует</li>
+        {% endif %}
+        {% if order.email %}
+        <li class="list-group-item">{{ order.email }}</li>
+        {% else %}
+        <li class="list-group-item">отсутствует</li>
+        {% endif %}
+        {% if order.question %}
+        <li class="list-group-item">{{ order.question }}</li>
+        {% else %}
+        <li class="list-group-item">отсутствует</li>
+        {% endif %}
+    </ul>
+</div>
+
+<div class="container d-flex" style="top: 140px; position: relative">
+    <form action="{% url 'order:order_final_delete' order.pk %}" method="post">
+        {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-lg">Удалить заявку окончательно!</button>
+    </form>
+</div>
+
+{% endblock %}

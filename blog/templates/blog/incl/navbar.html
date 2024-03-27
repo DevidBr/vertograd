@@ -1,0 +1,43 @@
+{% load static %}
+{% load blog_tags %}
+{% load service_tags %}
+
+<nav class="nav_menu">
+    <div class="logo">
+        <a href="{% url 'blog:home' %}"><img src="{% static 'blog/image/logo_vertograd.png' %}" alt="" class="logo_image"></a>
+        <div class="logo_text"><a href="{% url 'blog:home' %}">
+            <div class="logo_text__medium">СТУДИЯ<br>ФИТОДИЗАЙНА</div>
+            <div class="logo_text__bold">ВЕРТОГРАД</div>
+            </a>
+        </div>
+        <div class="logo_contacts">
+            <div class="logo_contacts-social-media">
+                <div class="logo_contacts-social-media__telegram"><a href="https://t.me/Verto_Grad"><img src="{% static 'blog/image/social_media/tele.png' %}" alt=""></a></div>
+                <div class="logo_contacts-social-media__youtube"><a href="https://wa.me/79917370740"><img src="{% static 'blog/image/social_media/WhatsApp.png' %}" alt="" width="32" height="32"></a></div>
+            </div>
+            <div class="logo_contacts-phone"><a href="tel:8-991-737-07-40">+7 (991) 737-07-40</a></div>
+        </div>
+    </div>
+
+
+
+
+    <ul class="nav-links">
+        <input type="checkbox" id="checkbox-toggle" />
+        <label for="checkbox-toggle" class="hamburger"><span class="hamburger-line"></span></label>
+        <div class="menu">
+            <li><a href="{% url 'blog:home' %}">Главная</a></li>
+            <li><a href="{% url 'blog:about_us' %}">О нас</a></li>
+            <li><a href="{% url 'blog:articles_list' %}">Статьи</a>
+            <li><a href="{% url 'service:service_list' %}">Услуги</a></li>
+<!--            <li><a href="{% url 'education:education_main' %}">Обучение</a></li>-->
+            {% if user.is_staff %}
+            <li><a href="{% url 'order:my_orders' %}" style="color: red !important">Управление заказами</a></li>
+            <li><a href="{% url 'order:staff_logout' %}" style="color: red !important">Выход</a></li>
+            {% else %}
+            <li><a href="{% url 'portfolio:portfolio_list' %}">Портфолио</a></li>
+            <li><a href="{% url 'blog:contacts' %}">Контакты</a></li>
+            {% endif %}
+        </div>
+    </ul>
+</nav>

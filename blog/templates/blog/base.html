@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+    {% block yandex_meta %}{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/svg+xml" href="{% static "blog/image/logo_vertograd.svg" %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;subset=latin,cyrillic"
+    rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog/css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/slick.css' %}">
+    <meta name="description" content="{% block description_meta %}{% endblock %}">
+    <title>{% block title %}Title{% endblock %}</title>
+</head>
+<body style="background-image: url({% static 'blog/image/background/background.jpg' %});">
+
+    {% include 'blog/incl/navbar.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'blog/incl/footer.html' %}
+
+
+
+    <script src="{% static 'blog/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/main.js' %}"></script>
+{% block extrascripts %} {% endblock%}
+</body>
+
+</html>

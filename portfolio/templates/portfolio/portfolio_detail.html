@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block description_meta %}{{ project.meta_description }}{% endblock %}
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">{{ project.name }}</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+
+    <div class="portfolio-carousel-container container ">
+        <div class="portfolio-detail-slider">
+            {% for photo in project.photo_set.all  %}
+            <div class="portfolio-detail-slider-item">
+                <img src="{{ photo.photo.url }}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="portfolio-detail-description container">
+        {{ project.description|safe }}
+    </div>
+
+{% include 'blog/incl/b_modal.html' %}
+
+    <div class="portfolio-bottom-photo container d-flex" style="background: url({{ project.bottom_photo.url }});">
+
+        <div class="portfolio-bottom-photo_item">
+            <h4 style="font-weight: 600">ХОТИТЕ ТАК ЖЕ?</h4>
+        </div>
+
+        <div class="portfolio-bottom-photo_item">
+            <p style="font-weight: 600">Мы будем рады обсудить проект и Ваши пожелания, сделав необходимые замеры помещения.</p>
+        </div>
+
+        <div class="portfolio-bottom-photo_item">
+            <button type="button" class="contact-us large_btn" data-bs-toggle="modal" data-bs-target="#get_consultation" style="height: 60px;">
+            Получить бесплатную консультацию
+            </button>
+        </div>
+    </div>
+
+{% block extrascripts %}
+    <script src="{% static 'blog/js/slick.min.js' %}"></script>
+    <script src="{% static 'blog/js/scripts.js' %}"></script>
+{% endblock %}
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% block description_meta %}Здесь Вы найдете проекты, воплощенные в жизнь, инетересные растения и дизайн проекты нашей команды. Закажи по тел.: +7-929-985-63-24{% endblock %}
+{% block title %}Примеры наших работ{% endblock %}
+
+{% block content %}
+
+    <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">ПОРТФОЛИО</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+    <div class="blog_article_list"">
+    {% for project in projects %}
+    <div class="blog_article_item">
+        <div class="blog_article_item-img">
+            <img src="{{ project.image.url }}" alt="">
+        </div>
+        <div class="blog_article_item_text">
+            <div class="blog_article_item_text-title">
+                <a href="{{ project.get_absolute_url }}"><h3>{{ project.name }}</h3></a>
+            </div>
+            <div class="blog_article_item_text-line"></div>
+
+        <div class="blog_article_item_text-description">
+            {{ project.description|safe }}
+        </div>
+        <div class="blog_article_item_text-detail">
+            <a href="{{ project.get_absolute_url }}">ПОДРОБНЕЕ</a>
+        </div>
+        </div>
+    </div>
+        {% endfor %}
+    </div>
+
+{% include 'blog/incl/paginator.html' %}
+
+
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load service_tags %}
+{% load widget_tweaks %}
+{% block yandex_meta %} <meta name="yandex-verification" content="98169ffeccebcbfd" /> {% endblock %}
+{% block description_meta %}Озеленение офиса в Москве от 2500 рублей, индивидуальный дизайн уютного интерьера, зеленые стены из комнатных растений. Доставка. Гарантия. Тел.: +7-929-985-63-24{% endblock %}
+{% block title %}Студия озеленения офисов, ресторанов, квартир в Москве - Вертоград{% endblock %}
+{% block content %}
+
+{% include 'blog/incl/b_modal.html' %}
+
+    <div class="transperent" style="background: url({% static 'blog/image/background/header_big_image.jpg' %});">
+
+        <div class="transperent_text_wrapper container d-flex flex-column">
+            <h1 class="transperent__title">Студия фитодизайна <br>и озеленения интерьера</h1>
+            <div class="transperent_button">
+                <button style="padding: 5px; font-size: 18px;" type="button" class="contact-us large_btn" data-bs-toggle="modal" data-bs-target="#get_consultation">
+                Получить бесплатную консультацию
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="services container">
+        <div class="services__slogan">
+            <h3 class="services__slogan-title">НАШИ УСЛУГИ</h3>
+            <p class="services__slogan-text">по озеленению интерьера жилых <br>и коммерческих пространств</p>
+        </div>
+        <div class="services__items">
+<!--            <a href="{% url 'education:education_main' %}">-->
+<!--                <div href="#" class="service__item" style="background-image: url({% static 'blog/image/education.png' %});">-->
+<!--                    <div class="service__item-title">Обучение</div>-->
+
+<!--                    <div class="service__item-text">Делимся опытом</div>-->
+<!--                </div>-->
+<!--            </a>-->
+            {% get_services_categories as services %}
+            {% for service in services %}
+            <a href="{{ service.get_absolute_url }}">
+                <div href="#" class="service__item" style="background-image: url({{ service.image.url }});">
+                    <div class="service__item-title">{{ service.name }}</div>
+
+                    <div class="service__item-text">{{ service.short_description }}</div>
+                </div>
+            </a>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="blog_main_page container">
+        <div class="blog_main_page__slogan">
+            <h3 class="blog_main_page__slogan-title">БЛОГ</h3>
+            <p class="blog_main_page__slogan-text">Интересные статьи и <br> актуальные новости в
+                области озеленения</p>
+        </div>
+
+        <div class="blog_main_page__items">
+            {% for article in articles %}
+            <div class="blog_main_page__item">
+                <div class="blog_main_page__item-img">
+                    <img src="{{ article.image.url }}" alt="">
+                </div>
+                <div class="blog_main_page__item-text">
+                    <div class="blog_main_page__item-text-title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></div>
+                    <div class="blog_article_item_text-line"></div>
+                    <div class="blog_main_page__item-text-description">{{ article.preview|truncatechars:250 }}</div>
+                    <br>
+                    <div class="blog_article_item_text-detail"><a href="{{ article.get_absolute_url }}">Читать статью</a></div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="blog_main_page_button_section">
+        <a href="{% url 'blog:articles_list' %}" class="large_btn_link">
+            <button class="large_btn" style="padding: 5px;">Перейти в наш блог</button>
+        </a>
+    </div>
+
+    <div class="about_us container" id="about_us">
+        <h3 class="about_us__title">О НАС</h3>
+        <div class="about_us__text" style="font-size: 1.1em;">
+
+            <p>&emsp;Студия фитодизайна Вертоград - это индивидуальный проект по озеленению офиса, квартиры, ресторана,
+        сервисный уход за растениями, обучение и мастер-классы, консультации специалистов по уходу за
+        растениями. Индивидуальный подбор кашпо под стиль интерьера. Выбор растений в соответствии с
+        микроклиматом помещения. Гарантия на все работы и посадочный материал.</p>
+
+        <p>&emsp;Вертоград - это устаревшее название сада, вертоградарь - садовник, а точнее - создатель прекрасного сада.<br>
+        Наш Вертоград был создан в 2014 году с определенной целью - помочь каждому желающему создать свой Вертоград, в
+        котором уютно и комфортно.</p>
+
+         <p>&emsp;Вертоград, хоть и устаревшее название, всегда идет в ногу со временем: мы используем современные и экологичные
+            материалы, сотрудничаем с лучшими профессионалами в сфере увлажнения воздуха, производства фитомодулей, фитоосвещения.
+            За годы работы и большого опыта мы сохранили все самое лучшее в фитодизайне:</p>
+
+            <ul>
+                <li>Реализуем желания заказчика;</li>
+
+                <li>Педлагаем месяц бесплатного обслуживания наших проектов;</li>
+
+                <li>Уверены, что Вертоградарь - это агроном с богатым опытом;</li>
+
+                <li>Считаем лучшим лекарством для растения - правильный уход и сильный иммунитет;</li>
+
+                <li>Знаем, какие секреты таят разные помещения.</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+    <div class="work_examples container">
+        <div class="work_examples__slogan">
+            <h3 class="work_examples__slogan-title">ПРИМЕРЫ РАБОТ</h3>
+            <p class="work_examples__slogan-text">некоторые работы, выполненные нашей студией</p>
+        </div>
+    </div>
+
+    <div class="portfolio-slider">
+        <div class="portfolio-slider-item"><img src="{% static 'blog/image/portfolio/portfolio_1.jpg' %}" alt=""></div>
+        <div class="portfolio-slider-item"><img src="{% static 'blog/image/portfolio/portfolio_2.jpg' %}" alt=""></div>
+        <div class="portfolio-slider-item"><img src="{% static 'blog/image/portfolio/portfolio_3.jpg' %}" alt=""></div>
+        <div class="portfolio-slider-item"><img src="{% static 'blog/image/portfolio/portfolio_4.jpg' %}" alt=""></div>
+        <div class="portfolio-slider-item"><img src="{% static 'blog/image/portfolio/portfolio_5.jpg' %}" alt=""></div>
+        <div class="portfolio-slider-item"><img src="{% static 'blog/image/portfolio/portfolio_6.jpg' %}" alt=""></div>
+    </div>
+
+    <div class="portfolio_button_section">
+        <a href="{% url 'portfolio:portfolio_list' %}" class="large_btn_link">
+            <button class="large_btn" style="padding: 5px;">Перейти в портфолио</button>
+        </a>
+    </div>
+
+
+
+
+    <div class="section_connecting_form container">
+        <div class="section_connecting_form-title">
+            Получите бесплатную консультацию фитодизайнера
+        </div>
+        <div class="section_connecting_form-text">
+            Заполнив форму обратной связи
+        </div>
+
+        <div class="connecting_form_wrapper" id="connecting_form_wrapper">
+            <div class="alert alert-success d-none" role="alert"></div>
+        <div class="alert alert-danger d-none" role="alert"></div>
+
+
+    <form action="{% url 'blog:get_consultation' %}" method="post" id="form_get_consultation_main_page">
+        <div class="modal-body">
+            {% csrf_token %}
+            {{ get_consultation_form }}
+        </div>
+
+            <button style="height: 60px;" type="submit" class="large_btn mt-2">Отправить</button>
+
+            <div class="text-muted agreement" style="font-size: 0.7em; text-align: center; margin: 10px 5px 5px 5px;">
+            Нажимая кнопку "Отправить", я подтверждаю свою дееспособность,
+            согласие на обработку персональных данных в соответствии с указным
+            <a style="text-decoration: underline !important"  href="{% url 'blog:policy' %}">здесь</a> текстом.</div>
+    </form>
+
+        </div>
+    </div>
+
+{% block extrascripts %}
+    <script src="{% static 'blog/js/slick.min.js' %}"></script>
+    <script src="{% static 'blog/js/scripts.js' %}"></script>
+{% endblock %}
+{% endblock %}
+

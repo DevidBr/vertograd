@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block description_meta %}Обучение новому направлению для работы с растениями на себя, в декрете и свободным графиком{% endblock %}
+{% block title %}Онлайн курсы: фитодизайн, озеленение, уход за растениями, фитопатология.{% endblock %}
+
+{% block content %}
+
+    <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">НАШИ ПРОГРАММЫ ОБУЧЕНИЯ</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+
+{% if trainings.count != 0 %}
+<div class="blog_article_list" style="justify-content: space-around;">
+    {% for training in trainings %}
+    <div class="blog_article_item">
+        <div class="blog_article_item-img">
+            <img src="{{ training.image.url }}" alt="">
+        </div>
+        <div class="blog_article_item_text">
+            <div class="blog_article_item_text-title">
+                <a href="{{ training.get_absolute_url }}"><h3>{{ training.name }}</h3></a>
+            </div>
+            <div class="blog_article_item_text-line"></div>
+
+        <div class="blog_article_item_text-description">
+            {{ training.short_description|safe|truncatechars:200 }}
+        </div>
+        <div class="blog_article_item_text-detail">
+            <a href="{{ training.get_absolute_url }}">ПОДРОБНЕЕ</a>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <div class="container" style="top: 150px; position: relative; width: 80%; text-align: center; height: 50vh;">
+        <h3>Программы обучения в разработке и будут опубликованы в ближайшее время.
+        <p><a href="{% url 'blog:home' %}">вернуться на главную страницу</a></p>
+        </h3>
+    </div>
+{% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

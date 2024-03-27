@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="footer_main">
+        <div class="footer_main_first_row">
+            <div class="footer_main-first_row-left">
+                <ul>
+                    <li><a href="{% url 'blog:home' %}">На главную</a></li>
+                    <li><a href="{% url 'blog:about_us' %}">О нас</a></li>
+                    <li><a href="{% url 'blog:articles_list' %}">Блог</a></li>
+                    <li><a href="{% url 'service:service_list' %}">Услуги</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_main-first_row-center">
+                <ul>
+                    <li><a href="{% url 'portfolio:portfolio_list' %}">Портфолио</a></li>
+                    <li><a href="{% url 'blog:oferta' %}">Оферта</a></li>
+                    <li><a href="{% url 'blog:policy' %}">Политика конфиденциальности</a></li>
+                    <li><a href="{% url 'blog:contacts' %}">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_main-first_row-logo">
+
+            </div>
+
+        </div>
+
+
+        <div class="footer_main_second_row">
+            &copy; ИП Курилко Е.В., 2024
+        </div>
+
+    </div>

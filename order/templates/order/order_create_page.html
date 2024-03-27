@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="container" style="top: 120px; position: relative">
+    <h2 style="text-align: center">Создание новой заявки.</h2>
+</div>
+
+<div class="container" style="top: 120px; position: relative; background-color: rgba(248, 249, 247, 0.7)">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="container rounded" style="border: 1px solid #cad7bc; padding: 8px; width: 80%">
+            <h4 style="text-align: center">На что заявка?</h4>
+            <hr>
+            <h5>{{ form.type_of_application.label }}</h5>
+            {{ form.type_of_application }} <br>
+
+            <h5>{{ form.exactly_name_application.label }}</h5>
+            {{ form.exactly_name_application }}
+        </div>
+
+        <div class="container mt-3 rounded" style="border: 1px solid #cad7bc; padding: 8px; width: 80%;">
+            <h4 style="text-align: center">Информация о клиенте:</h4>
+            <hr>
+            <h5>{{ form.name.label }}</h5>
+            {{ form.name }} <br>
+            <h5>{{ form.phone.label }}</h5>
+            {{ form.phone }} <br>
+            <h5>{{ form.email.label }}</h5>
+            {{ form.email }}
+        </div>
+
+        <div class="container mt-3 rounded" style="border: 1px solid #cad7bc; padding: 8px; width: 80%;">
+            <h4 style="text-align: center">Заметки</h4>
+            <hr>
+            <h5>{{ form.comment.label }}</h5>
+            {{ form.comment }}
+
+            <button class="btn btn-success btn-lg mt-3" type="submit">Сохранить</button>
+        </div>
+
+
+    </form>
+</div>
+
+{% endblock %}

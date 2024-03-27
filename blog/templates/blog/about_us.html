@@ -1,0 +1,112 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}История создания студии фитодизайна и озеленения Вертоград{% endblock %}
+
+{% block content %}
+<div class="about_us container about_us_page" id="about_us" style="top: 130px; width: 80%;">
+    <div class="service_category_detail_header" style="top: -20px; width: 100%;">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">О НАС</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+        <p class="about_us__text" style="font-size: 1.1em; font-weight: 500; background-color: rgba(248, 249, 247, 0.7) !important;">
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>Вертоград</strong> - это устаревшее название сада, вертоградарь - садовник,
+            а точнее - создатель
+            прекрасного сада.
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Наш Вертоград был создан в 2014 году с определенной целью - помочь каждому желающему
+            создать свой Вертоград,
+            в котором уютно и комфортно. <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Всё начиналось с праздничной и повседневной флористики, мы создавали цветочные
+            шедевры не по картинке, а исходя из описания человека, которому предназначался букет или цветочная
+            композиция.
+            Затем мы создали свою детскую школу флористики, где дети от 4 лет и старше учились красоте, а порой у них
+            учились и мы. И параллельно с этим мы запускаем проект интерьерного озеленения. Фитодизайн интерьеров,
+            вертикальные стены из живых растений, сенсорные и зимние сады, зеленые балконы и интерьерные джунгли.
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Вертоград, хоть и устаревшее название, всегда идет в ногу со временем: мы используем современные и
+            экологичные материалы, сотрудничаем с лучшими профессионалами в сфере увлажнения воздуха, производства
+            фитомодулей, фитоосвещения. <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;За годы работы и большого опыта мы сохранили все самое лучшее в фитодизайне:
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Реализуем желания заказчика;
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Педлагаем месяц бесплатного обслуживания наших
+            проектов;
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Уверены, что Вертоградарь - это агроном с богатым
+            опытом;
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Считаем лучшим лекарством для растения - правильный
+            уход и
+            сильный иммунитет;
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Знаем, какие секреты таят разные помещения.
+            <br><br>
+        </p>
+</div>
+
+<div class="contacts container d-flex flex-column w-100 gap-3">
+
+    <div class="service_category_detail_header" style="width: 100%; top: 0">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">КОНТАКТЫ</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+    <div class="contacts_row_2 container d-flex gap-3" style="color: #5B6B3A; padding: 0">
+        <div class="contacts_row_2_left_column w-50 d-flex flex-column">
+            <div class="contacts_row_2_left_column_item_1" style="font-weight: 600;">
+                <h5 style="text-decoration: underline;">Звонок по Москве:</h5>
+                <p class="contact_link"><a href="tel:8-991-737-07-40">+7 (991) 737-07-40</a></p>
+                <div><p>(звонить в рабочее время с 9:00 до 18:00)</p></div>
+            </div>
+            <div class="contacts_row_2_left_column_item_2" style="line-height: 0.5; font-weight: 600;">
+                <h5>Электронная почта:</h5>
+                <p class="contact_link"><a href="mailto:fitodeco@yandex.ru">fitodeco@yandex.ru</a></p>
+            </div>
+            <div class="contacts_row_2_left_column_item_3" style="">
+                <div class="contacts_social_media_item d-flex gap-2">
+                    <div><img src="{% static 'blog/image/social_media/tele.png' %}" alt=""></div>
+                    <div><p class="contact_link"><a href="https://t.me/Verto_Grad">Написать в Telegram</a></p></div>
+                </div>
+                <div class="contacts_social_media_item d-flex gap-2">
+                    <div><img src="{% static 'blog/image/social_media/WhatsApp.png' %}" alt="" width="32" height="32"></div>
+                    <div><p class="contact_link"><a href="https://wa.me/79917370740">Написать в WhatsApp</a></p></div>
+                </div>
+                <div class="contacts_social_media_item d-flex gap-2">
+                    <div><img src="{% static 'blog/image/social_media/youtube.png' %}" alt=""></div>
+                    <div><p class="contact_link"><a href="https://www.youtube.com/@Ver_g">Смотреть нас на Youtube</a></p></div>
+                </div>
+            </div>
+        </div>
+        <div class="contacts_row_2_right_column w-50 d-flex flex-column">
+            <div class="contacts_row_2_right_column_item_1" style="line-height: 0.5; font-weight: 600;">
+            <h5 style="text-decoration: underline">СВЯЖИТЕСЬ С НАМИ:</h5>
+        </div>
+
+                <div class="alert alert-success d-none" role="alert"></div>
+                <div class="alert alert-danger d-none" role="alert"></div>
+
+
+            <form action="{% url 'blog:get_consultation' %}" method="post" id="form_get_consultation_main_page" class="d-flex flex-column">
+                <div class="modal-body">
+                {% csrf_token %}
+                {{ get_consultation_form }}
+                </div>
+
+            <button style="height: 45px; margin-left: auto; margin-right: auto; width: 50%;" type="submit" class="large_btn mt-2">Отправить</button>
+
+            <div class="text-muted agreement" style="font-size: 0.7em; text-align: center; margin: 10px 5px 5px 5px;">
+            Нажимая кнопку "Отправить", я подтверждаю свою дееспособность,
+            согласие на обработку персональных данных в соответствии с указным
+            <a style="text-decoration: underline !important"  href="{% url 'blog:policy' %}">здесь</a> текстом.</div>
+            </form>
+
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'blog/base.html' %}
+{% block description_meta %}{{ service_category.meta_description }}{% endblock %}
+{% block title %}{{ service_category.title }}{% endblock %}
+{% block content %}
+
+{% include 'service/incl/b_modal.html' %}
+
+    <div class="service_category_detail_header">
+        <div class="service_category_detail_line"></div>
+        <div class="service_category_detail_title">{{ service_category.name }}</div>
+        <div class="service_category_detail_line"></div>
+    </div>
+
+    <div class="service_list">
+        {% for service in services %}
+        <div class="service_item">
+            <div class="service_item_text" style="height: unset;">
+            <div class="service_item_text-title" ><h4 style="font-size: x-large; font-weight: 600; margin-bottom: unset;">{{ service.name }}</h4></div>
+            </div>
+            {% if service.image %}
+            <div class="blog_article_item-img">
+                <img src="{{ service.image.url }}" alt="">
+            </div>
+            {% endif %}
+            <div class="service_item_text">
+                <div class="service_item_text-description">{{ service.description|safe }}</div>
+            </div>
+            {% if service.price %}
+            <div class="service_item_price">
+                <div class="service_item_price-from">от</div>
+                <div class="service_item_price-price">
+                    <div class="service_item_price-price-line"></div>
+                    <div class="service_item_price-price-price">{{ service.price|floatformat:"g" }}</div>
+                    <div class="service_item_price-price-line"></div>
+                </div>
+                <div class="service_item_price-from">руб.</div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="service_page_button_section">
+        <a href="#" class="large_btn_link" data-bs-toggle="modal" data-bs-target="#order_service">
+            <button class="large_btn">Заказать</button>
+        </a>
+    </div>
+
+
+    <div class="service_category_detail_columns">
+        <div class="service_category_detail_columns_left">
+            <div class="service_category_detail_columns_left_title">
+                <h4 style="font-size: x-large; font-weight: 600; margin-bottom: unset;">{{ service_category.column_1_title }}</h4>
+            </div>
+            <div class="service_category_detail_columns_left_text">
+                {{ service_category.description_column_1|safe }}
+            </div>
+        </div>
+
+        <div class="service_category_detail_columns_right">
+            <div class="service_category_detail_columns_right_title">
+                <h4 style="font-size: x-large; font-weight: 600; margin-bottom: unset;">{{ service_category.column_2_title }}</h4>
+            </div>
+            <div class="service_category_detail_columns_right_text">
+                {{ service_category.description_column_2|safe }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

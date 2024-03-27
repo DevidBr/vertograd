@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block description_meta %}Дизайн проект с индивидуальным подходом, посадка растений и подбор кашпо?  Нужна пересадка комнатных растений, уход за растениями, лечение болезней растений и обработка от вредителей?{% endblock %}
+{% block title %}Услуги Вертограда: дизайн проект, озеленение интерьера, уход за растениями, консультация, обучение специалистов. В Москве и онлайн.{% endblock %}
+
+{% block content %}
+
+<div class="services" style="margin: 0px 10% -100px 10%;">
+    <br> <br> <br> <br>
+    <div class="services__slogan">
+        <h3 class="services__slogan-title">НАШИ УСЛУГИ</h3>
+        <p class="services__slogan-text">по озеленению интерьера жилых <br>и коммерческих пространств</p>
+    </div>
+    <div class="services__items" style="margin-top: 49px">
+        <a href="{% url 'education:education_main' %}">
+            <div href="#" class="service__item" style="background-image: url({% static 'blog/image/education.png' %});">
+                <div class="service__item-title">Обучение</div>
+
+                <div class="service__item-text">Делимся опытом</div>
+            </div>
+        </a>
+        {% for service in services %}
+        <a href="{{ service.get_absolute_url }}">
+            <div class="service__item" style="background-image: url({{ service.image.url }});">
+                <div class="service__item-title">{{ service.name }}</div>
+                <div class="service__item-text">{{ service.short_description }}</div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="container d-flex" style="top: 120px; position: relative; justify-content: center">
+    <h3>Заявка №{{ order.pk }}.</h3>
+</div>
+
+
+<div class="container d-flex" style="top: 120px; position: relative; ">
+    <ul class="list-group" style="flex: 1; ">
+        <li class="list-group-item">Имя</li>
+        <li class="list-group-item">Номер заявки</li>
+        <li class="list-group-item">Заявка поступила</li>
+        <li class="list-group-item">Вид заявки</li>
+        <li class="list-group-item">Продукт</li>
+        <li class="list-group-item">Телефон:</li>
+        <li class="list-group-item">email:</li>
+        <li class="list-group-item">Комментарий заказчика:</li>
+    </ul>
+    <ul class="list-group" style="flex: 3">
+        <li class="list-group-item">{{ order.name }}</li>
+        <li class="list-group-item">{{ order.pk }}</li>
+        <li class="list-group-item">{{ order.date }}</li>
+        <li class="list-group-item">{{ order.type_of_application }}</li>
+        <li class="list-group-item">{{ order.exactly_name_application }}</li>
+        {% if order.phone %}
+        <li class="list-group-item">{{ order.phone }}</li>
+        {% else %}
+        <li class="list-group-item">отсутствует</li>
+        {% endif %}
+        {% if order.email %}
+        <li class="list-group-item">{{ order.email }}</li>
+        {% else %}
+        <li class="list-group-item">отсутствует</li>
+        {% endif %}
+        {% if order.question %}
+        <li class="list-group-item">{{ order.question }}</li>
+        {% else %}
+        <li class="list-group-item">отсутствует</li>
+        {% endif %}
+    </ul>
+</div>
+
+<div class="container" style="top: 120px; position: relative; margin-top: 15px;">
+    <form action="{% url 'order:order_change_save' %}" method="post">
+        {% csrf_token %}
+        {{ form.order_pk }}
+
+        <div class="container d-flex flex-column" style="padding: 0;">
+            <h5>{{ form.comment.label }}</h5>
+            {{ form.comment }}
+        </div>
+
+        <div class="container d-flex flex-column" style="margin-top: 15px; padding: 0;">
+            <h5>{{ form.status.label }}</h5>
+            <div class="" style="background-color: {% if form.status.value %}green{% else %}red{% endif %}; width: 40%; border-radius: 10px; padding: 2px">{{ form.status }}</div>
+            <br>
+            <h5>{{ form.relevant.label }}</h5>
+            {{ form.relevant }} <br> <br>
+
+            <button type="submit" class="btn btn-success btn-lg" style="width: 40%">Сохранить</button>
+        </div>
+
+    </form>
+
+    <hr>
+
+    <div class="container d-flex" style="justify-content: flex-end;">
+       <div class="order_delete_link">
+           <a href="{% url 'order:order_delete_confirm' order.pk %}" style="color: red !important">Удалить заявку</a>
+       </div>
+    </div>
+</div>
+
+
+{% endblock %}
