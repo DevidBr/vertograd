@@ -143,6 +143,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 THUMBNAIL_ALIASES = {
     '': {
         'article_image_preview': {'size': (180, 180), 'crop': True},
@@ -189,12 +190,12 @@ CKEDITOR_CONFIGS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'mail.netangels.ru'
+EMAIL_HOST = '***'
 EMAIL_PORT = 2525
 EMAIL_USE_SSL = True
 
-EMAIL_HOST_USER = 'zakaz@ver-g.ru'
-EMAIL_HOST_PASSWORD = 'TumBo4ka1981'
+EMAIL_HOST_USER = '***'
+EMAIL_HOST_PASSWORD = '***'
 EMAIL_USE_TLS = False
 
 
